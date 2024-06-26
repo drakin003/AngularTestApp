@@ -1,1 +1,20 @@
-<p>calculator works!</p>
+<div class="flex h-auto items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded shadow-lg">
+      <div class="mb-4 w-full">
+        <label for="number1" class="block text-gray-700 dark:text-gray-300">1st Number</label>
+        <input #first id="number1" type="number" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+      <div class="mb-4 w-full">
+        <label for="number2" class="block text-gray-700 dark:text-gray-300">2nd Number</label>
+        <input #second id="number2" type="number" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+      <div class="flex space-x-2">
+        <button class="px-4 py-2 bg-blue-500 dark:bg-blue-700 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-800" (click)="num('+')">+</button>
+        <button class="px-4 py-2 bg-green-500 dark:bg-green-700 text-white rounded hover:bg-green-700 dark:hover:bg-green-800" (click)="num('-')">-</button>
+        <button class="px-4 py-2 bg-red-500 dark:bg-red-700 text-white rounded hover:bg-red-700 dark:hover:bg-red-800" (click)="num('*')">*</button>
+        <button class="px-4 py-2 bg-yellow-500 dark:bg-yellow-700 text-white rounded hover:bg-yellow-700 dark:hover:bg-yellow-800" (click)="num('%')">%</button>
+      </div>
+      <h1 class="mt-2 text-center" #display>Result: {{result}}</h1>
+    </div>
+  </div>
+  
