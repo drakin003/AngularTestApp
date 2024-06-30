@@ -14,6 +14,5 @@ import { PrComponent } from './components/pr/pr.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'MyPortfolio';
   
 }

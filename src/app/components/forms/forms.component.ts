@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Userinfo } from '../../classes/userinfo';
 
 @Component({
   selector: 'app-forms',
@@ -11,17 +12,18 @@ import { Router } from '@angular/router';
   styleUrl: './forms.component.css'
 })
 export class FormsComponent {
-  email: string = '';
-  password: string = '';
+
+  user: Userinfo = new Userinfo("","", []);
+
+  courseslist: string[] = ["Angular", "React", "Vue"];
 
   constructor(private router: Router){
-
   }
 
   onSubmit(form: any) {
-    if (this.email && this.password) {
-      const email = this.email;
-      const password = this.password;
+    if (form.valid) {
+      const email = this.user.userEmail;
+      const password = this.user.userPassword;
       console.log(`Email: ${email}`);
       console.log(`Password: ${password}`);
       localStorage.setItem('email', email);
@@ -29,6 +31,6 @@ export class FormsComponent {
       setTimeout(() => {
         this.router.navigate(['home']);
       }, 1000);
-    }
+    } else { console.log("Something Went Wrong");
+    }}
   }
-}
