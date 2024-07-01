@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ChComponent } from '../ch/ch.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pr',
@@ -10,5 +11,15 @@ import { ChComponent } from '../ch/ch.component';
   styleUrl: './pr.component.css'
 })
 export class PrComponent {
+  info: any
 
-}
+  constructor(private http: HttpClient) {
+    this.getData();
+  }
+
+  getData() {
+    this.http.get('http://127.0.0.1:4300/api/users').subscribe(data => {
+      this.info = data;
+    });
+  }
+  }
