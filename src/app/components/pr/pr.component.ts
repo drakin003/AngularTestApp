@@ -18,7 +18,7 @@ export class PrComponent {
   }
 
   getData() {
-    this.http.get('http://127.0.0.1:4300/api/users').subscribe(data => {
+    this.http.get('http://51.112.70.161:4300/api/users').subscribe(data => {
       this.info = data;
     });
   }
