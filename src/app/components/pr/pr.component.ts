@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChComponent } from '../ch/ch.component';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-pr',
@@ -10,16 +10,13 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './pr.component.html',
   styleUrl: './pr.component.css'
 })
-export class PrComponent {
-  info: any
+export class PrComponent implements OnInit {
+  comments: any = '';
 
-  constructor(private http: HttpClient) {
-    this.getData();
+  constructor(private apiService: ApiService) {}
+  ngOnInit(): void {
+    this.apiService.getdata().subscribe(data => this.comments = data)
+      
   }
 
-  getData() {
-    this.http.get('http://51.112.70.161:4300/api/users').subscribe(data => {
-      this.info = data;
-    });
-  }
   }
