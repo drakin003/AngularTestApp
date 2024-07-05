@@ -1,0 +1,10 @@
+.animate-color:hover{
+    animation: color 5s ease-in-out infinite;
+
+}
+@keyframes color {
+    0% {color: blue;}
+    30%{color: red;}
+    60%{color: chartreuse;}
+    100%{color: blue;}
+}

@@ -9,7 +9,7 @@ import { PrComponent } from './components/pr/pr.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink,RouterOutlet, CommonModule,NavbarComponent,FooterComponent,ContactComponent, PrComponent ],
+  imports: [RouterOutlet, CommonModule,NavbarComponent,FooterComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

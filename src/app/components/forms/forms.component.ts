@@ -29,7 +29,7 @@ export class FormsComponent {
       localStorage.setItem('email', email);
       localStorage.setItem('isLoggedIn', 'true');
       setTimeout(() => {
-        this.router.navigate(['home']);
+        this.router.navigate(['']);
       }, 1000);
     } else { console.log("Something Went Wrong");
     }}
