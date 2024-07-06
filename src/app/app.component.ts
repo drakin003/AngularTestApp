@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { PrComponent } from './components/pr/pr.component';
 
 @Component({
   selector: 'app-root',
@@ -14,5 +12,12 @@ import { PrComponent } from './components/pr/pr.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+  constructor(private router: Router){
+  }
+
+  ngOnInit(): void {
+    this.router.navigate(['']);
+  }
   
 }
