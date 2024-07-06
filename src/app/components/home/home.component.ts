@@ -15,7 +15,4 @@ export class HomeComponent implements OnInit {
     this.email = localStorage.getItem('email');
       
   }
-
-
-
 }
