@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 import { Userinfo } from '../../classes/userinfo';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-forms',
@@ -13,24 +13,31 @@ import { Userinfo } from '../../classes/userinfo';
 })
 export class FormsComponent {
 
-  user: Userinfo = new Userinfo("","", []);
+  user: Userinfo = new Userinfo("", "", "");
+  registermessage: string = "";
 
-  courseslist: string[] = ["Angular", "React", "Vue"];
-
-  constructor(private router: Router){
-  }
+  constructor(private apiService: ApiService) {}
 
   onSubmit(form: any) {
     if (form.valid) {
-      const email = this.user.userEmail;
-      const password = this.user.userPassword;
-      console.log(`Email: ${email}`);
-      console.log(`Password: ${password}`);
-      localStorage.setItem('email', email);
-      localStorage.setItem('isLoggedIn', 'true');
-      setTimeout(() => {
-        this.router.navigate(['']);
-      }, 1000);
-    } else { console.log("Something Went Wrong");
-    }}
+      const observer = {
+        next: (res: any) => {
+          if (res && res.message === "User Registered!") {
+            this.registermessage = 'User Registered Successfully';
+            this.user = new Userinfo("", "", "");
+          } else {
+            this.registermessage = 'User Registration Failed';
+          }
+        },
+        error: (error: any) => {
+          console.error('Error registering user:', error);
+          this.registermessage = "Failed to register user. Please try again.";
+        },
+      };
+
+      this.apiService.registerUser(this.user).subscribe(observer);
+    } else {
+      this.registermessage = "Please fill all the required fields.";
+    }
   }
+}

@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private apiLink = 'http://51.112.70.161:4300/api/users';
+  private getlink = 'http://localhost:4300/api/users';
+  private postlink = 'http://localhost:4300/api/register';
 
   constructor(private http: HttpClient) { 
   }
 
+  registerUser(user: any): Observable<any>{
+    return this.http.post<any>(this.postlink, user);
+
+  }
+
   getdata(){
-    return this.http.get(this.apiLink);
+    return this.http.get(this.getlink);
   }
 
   productinfo(){

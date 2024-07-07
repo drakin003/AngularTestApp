@@ -13,7 +13,7 @@ export const routes: Routes = [
   { path: 'calculator', component: CalculatorComponent},
   { path: 'contact', component: ContactComponent },
   { path: 'api', component: PrComponent },
-  { path: 'login', component: FormsComponent },
+  { path: 'register', component: FormsComponent },
   { path: 'products', component: ProductsComponent},
   { path: 'products/:id', component: ProductsinfoComponent},
   { path: '**', component: PagenotfoundComponent }
