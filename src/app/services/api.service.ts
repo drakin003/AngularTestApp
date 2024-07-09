@@ -6,10 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private getlink = 'http://localhost:4300/api/users';
-  private postlink = 'http://localhost:4300/api/register';
+  private getlink = 'http://51.112.70.161:4300/api/users';
+  private postlink = 'http://51.112.70.161:4300/api/register';
+  private weatherkey = "5fee79025f68465dbf4114454232705";
 
   constructor(private http: HttpClient) { 
+  }
+
+  weatherinfo(city: string){
+    let url = `https://api.weatherapi.com/v1/current.json?key=${this.weatherkey}&q=${city}&aqi=no`
+    return this.http.get(url);
   }
 
   registerUser(user: any): Observable<any>{
