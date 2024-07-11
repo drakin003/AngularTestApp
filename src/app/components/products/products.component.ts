@@ -11,12 +11,14 @@ import { RouterLink } from '@angular/router';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-  products: any = [];
+  product: any = [];
 
   constructor(private productlist: ApiService) { }
 
   ngOnInit(): void {
-    this.products = this.productlist.productinfo();
+      this.productlist.productinfo().subscribe(products => {
+          this.product = products
+      });
   }
 
 }

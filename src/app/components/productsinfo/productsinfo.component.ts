@@ -16,7 +16,14 @@ export class ProductsinfoComponent {
 
   ngOnInit(): void {
     const id = +this.routes.snapshot.params['id'];
-    this.product = this.productlist.productinfo().find(p => p.id === id);
-  }
 
+    this.productlist.productinfo().subscribe(products => {
+      if (Array.isArray(products)) {
+        this.product = products.find((p:any) => p.id === id)
+      } else {
+        console.log('No product found with id:', id)
+      }
+    })
+
+}
 }
