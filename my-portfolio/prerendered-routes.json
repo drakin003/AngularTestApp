@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "/",
+    "/api",
+    "/contact",
+    "/products",
+    "/weather"
+  ]
+}
