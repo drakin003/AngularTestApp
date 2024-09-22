@@ -97,6 +97,15 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/cli-gh-pages:deploy",
+          "options": {
+            "repository": "https://github.com/drakin003/MyPortfolio.git",
+            "branch": "gh-pages",
+            "message": "Deployed to GitHub Pages",
+            "baseHref": "/MyPortfolio/"
+          }
         }
       }
     }
