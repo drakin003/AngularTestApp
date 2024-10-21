@@ -12,18 +12,18 @@ import { CommonModule } from '@angular/common';
 export class WeatherComponent {
   showweather: any;
   cityname: string = 'Karachi'
-  constructor(private api: ApiService){}
+  constructor(private api: ApiService) { }
 
-  weather(n: string){
+  weather(n: string) {
     this.cityname = n
     this.ngOnInit()
   }
 
   ngOnInit(): void {
-    this.api.getweatherinfo(this.cityname).subscribe( (data) => {
+    this.api.getweatherinfo(this.cityname).subscribe((data) => {
       this.showweather = data;
     })
-    
+
   }
 
 }

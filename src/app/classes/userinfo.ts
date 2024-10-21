@@ -1,3 +1,3 @@
 export class Userinfo {
-    constructor(public username: string,public email: string , public plainpassword: string) { }
+    constructor(public username: string, public email: string, public plainpassword: string) { }
 }

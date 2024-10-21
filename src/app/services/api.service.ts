@@ -12,22 +12,22 @@ export class ApiService {
 
   weatherkey = '5fee79025f68465dbf4114454232705';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getusers(){
+  getusers() {
     return this.http.get(this.usersUrl);
   }
 
-  getproducts(){
+  getproducts() {
     return this.http.get(this.productsUrl);
   }
 
-  getweatherinfo(city: string){
+  getweatherinfo(city: string) {
     let weatherlink = `http://api.weatherapi.com/v1/current.json?key=${this.weatherkey}&q=${city}&aqi=no`;
     return this.http.get(weatherlink);
   }
 
-  getregister(userinfo: any): Observable<any>{
+  getregister(userinfo: any): Observable<any> {
     return this.http.post<any>(this.registerUrl, userinfo);
   }
 }
