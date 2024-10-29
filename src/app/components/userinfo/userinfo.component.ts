@@ -1,6 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+interface Userinfo {
+  ip: string;
+  hostname: string;
+  org: string;
+  city: string;
+  region: string;
+  country: string;
+}
 
 @Component({
   selector: 'app-userinfo',
@@ -10,18 +20,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './userinfo.component.css'
 })
 export class UserinfoComponent implements OnInit {
-  browser: string;
-  os: string;
-  ip: string | any;
-  hostname: string | undefined;
-  isp: string | undefined;
-  city: string | undefined;
-  region: string | undefined;
-  country: string | undefined;
+  browser: string | undefined;
+  os: string | undefined;
+  userinfo: Userinfo | undefined;
 
-  constructor(private http: HttpClient) {
-    this.browser = this.getBrowser();
-    this.os = this.getOS();
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.browser = this.getBrowser();
+      this.os = this.getOS();
+    }
   }
 
   ngOnInit() {
@@ -29,11 +36,11 @@ export class UserinfoComponent implements OnInit {
   }
 
   getBrowser(): string {
-    const userAgent = navigator.userAgent;
+    const userAgent = window.navigator.userAgent;
     let browserName = 'Unknown';
 
     if (userAgent.indexOf('Chrome') > -1) {
-      browserName = 'Chrome';
+      browserName = 'Chromium';
     } else if (userAgent.indexOf('Firefox') > -1) {
       browserName = 'Firefox';
     } else if (userAgent.indexOf('Safari') > -1) {
@@ -46,7 +53,7 @@ export class UserinfoComponent implements OnInit {
   }
 
   getOS(): string {
-    const userAgent = navigator.userAgent;
+    const userAgent = window.navigator.userAgent;
     let osName = 'Unknown OS';
 
     if (userAgent.indexOf('Win') > -1) {
@@ -67,27 +74,25 @@ export class UserinfoComponent implements OnInit {
   getIpAddress() {
     this.http.get<any>('https://api.ipify.org?format=json').subscribe({
       next: (response) => {
-        this.ip = response.ip;
-        this.getLocationAndIsp(this.ip);
+        // free api no point stealing it
+        this.http.get<any>(`https://ipinfo.io/${response.ip}/json?token=2fe1bb5136bdc5`).subscribe({
+          next: (response) => {
+            this.userinfo = {
+              ip: response.ip,
+              hostname: response.hostname,
+              org: response.org,
+              city: response.city,
+              region: response.region,
+              country: response.country
+            };
+          },
+          error: (error) => {
+            console.error('Could not fetch location and ISP', error);
+          }
+        });
       },
       error: (error) => {
         console.error('Could not fetch IP address', error);
-      }
-    });
-  }
-
-  getLocationAndIsp(ip: string) {
-    const apiKey = '2fe1bb5136bdc5';
-    this.http.get<any>(`https://ipinfo.io/${ip}/json?token=${apiKey}`).subscribe({
-      next: (response) => {
-        this.hostname = response.hostname;
-        this.isp = response.org;
-        this.city = response.city;
-        this.region = response.region;
-        this.country = response.country;
-      },
-      error: (error) => {
-        console.error('Could not fetch location and ISP', error);
       }
     });
   }
