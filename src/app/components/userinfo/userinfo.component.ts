@@ -23,6 +23,7 @@ export class UserinfoComponent implements OnInit {
   browser: string | undefined;
   os: string | undefined;
   userinfo: Userinfo | undefined;
+  loading: boolean = true;
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
@@ -32,7 +33,11 @@ export class UserinfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getIpAddress();
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.getIpAddress();
+      }, 2000);
+    }
   }
 
   getBrowser(): string {
@@ -74,7 +79,6 @@ export class UserinfoComponent implements OnInit {
   getIpAddress() {
     this.http.get<any>('https://api.ipify.org?format=json').subscribe({
       next: (response) => {
-        // free api no point stealing it
         this.http.get<any>(`https://ipinfo.io/${response.ip}/json?token=2fe1bb5136bdc5`).subscribe({
           next: (response) => {
             this.userinfo = {
@@ -85,14 +89,17 @@ export class UserinfoComponent implements OnInit {
               region: response.region,
               country: response.country
             };
+            this.loading = false
           },
           error: (error) => {
             console.error('Could not fetch location and ISP', error);
+            this.loading = false;
           }
         });
       },
       error: (error) => {
         console.error('Could not fetch IP address', error);
+        this.loading = false;
       }
     });
   }
