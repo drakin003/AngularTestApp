@@ -3,11 +3,10 @@ import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-weather',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './weather.component.html',
-  styleUrl: './weather.component.css'
+    selector: 'app-weather',
+    imports: [CommonModule],
+    templateUrl: './weather.component.html',
+    styleUrl: './weather.component.css'
 })
 export class WeatherComponent {
   showweather: any;

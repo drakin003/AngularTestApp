@@ -13,11 +13,10 @@ interface Userinfo {
 }
 
 @Component({
-  selector: 'app-userinfo',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './userinfo.component.html',
-  styleUrl: './userinfo.component.css'
+    selector: 'app-userinfo',
+    imports: [CommonModule],
+    templateUrl: './userinfo.component.html',
+    styleUrl: './userinfo.component.css'
 })
 export class UserinfoComponent implements OnInit {
   browser: string | undefined;

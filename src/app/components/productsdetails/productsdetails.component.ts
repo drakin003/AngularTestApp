@@ -4,11 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-productsdetails',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './productsdetails.component.html',
-  styleUrl: './productsdetails.component.css'
+    selector: 'app-productsdetails',
+    imports: [CommonModule],
+    templateUrl: './productsdetails.component.html',
+    styleUrl: './productsdetails.component.css'
 })
 export class ProductsdetailsComponent {
 

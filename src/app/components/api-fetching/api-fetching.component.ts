@@ -4,11 +4,10 @@ import { ApiService } from '../../services/api.service';
 import 'animate.css';
 
 @Component({
-  selector: 'app-api-fetching',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './api-fetching.component.html',
-  styleUrl: './api-fetching.component.css'
+    selector: 'app-api-fetching',
+    imports: [CommonModule],
+    templateUrl: './api-fetching.component.html',
+    styleUrl: './api-fetching.component.css'
 })
 export class ApiFetchingComponent {
   info: any;
