@@ -7,6 +7,7 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { ApiFetchingComponent } from './components/api-fetching/api-fetching.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
+import { ExtraComponent } from './components/extra/extra.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -16,5 +17,6 @@ export const routes: Routes = [
     { path: "weather", component: WeatherComponent },
     { path: 'api', component: ApiFetchingComponent },
     { path: 'register', component: SignupComponent },
-    { path: 'userinfo', component: UserinfoComponent }
+    { path: 'userinfo', component: UserinfoComponent },
+    { path: 'extra', component: ExtraComponent }
 ];

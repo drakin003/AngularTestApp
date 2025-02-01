@@ -1,1 +1,22 @@
-<p>extra works!</p>
+<section>
+    <div
+        class="m-2 p-2 text-center text-white text-4xl mt-6 mb-4 animate__animated animate__slideInRight flex flex-col items-center justify-center">
+        <h1 class="m-1">Pick a color:</h1>
+        <label class="" for="color">
+            <input type="text" name="color" id="color" [(ngModel)]="color"
+                class="bg-transparent duration-300 border-2 border-blue-400 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96">
+        </label>
+        <div class="m-2 p-2 w-96 h-96 border-2 border-teal-500 duration-300" [style.background-color]="color"></div>
+    </div>
+
+    <div
+        class="m-2 p-2 flex flex-col justify-center items-center text-center text-white text-4xl mt-6 mb-4 animate__animated animate__slideInRight">
+        <h1 class="m-1">Type Anything:</h1>
+        <label for="text">
+            <input type="text" name="text" id="text" [(ngModel)]="text"
+                class="m-2 p-2 bg-transparent duration-300 border-2 border-blue-400 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96">
+        </label>
+
+        <h1>You Typed: {{text}}</h1>
+    </div>
+</section>

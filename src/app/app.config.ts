@@ -9,6 +9,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideHttpClient(withFetch()) ,provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), 
-    importProvidersFrom(FontAwesomeModule), {provide: LocationStrategy, useClass: PathLocationStrategy}]
+  providers: [provideHttpClient(withFetch()), provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(),
+  importProvidersFrom(FontAwesomeModule), { provide: LocationStrategy, useClass: PathLocationStrategy }]
 };
